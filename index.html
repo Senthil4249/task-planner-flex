@@ -1,0 +1,300 @@
+<!-- OM Murugan Thuani -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script type="text/javascript" src="./scripts/main.js"></script>
+
+    <title>TaskPlan</title>
+  </head>
+  <body>
+    <!-- Header with menu bar starts here -->
+    <header class="header-container">
+      <section class="logo-image-section">
+        <img class="logo-image" src="./images/as-logo.jpeg" alt="Logo" />
+      </section>
+      <h1 class="heading-text">Task Planner</h1>
+      <section class="search-section">
+        <label for="search">Search</label>
+        <input id="search" type="text" />
+        <a href="#" class="contact-link">Contact Us</a>
+      </section>
+    </header>
+    <!-- Header menu bear ends here -->
+
+    <!-- Icon to diaplay for adding task starts here -->
+    <!-- Icon to display for adding task ends here -->
+
+    <!-- Left menu bar starts here -->
+    <section class="overall-container">
+      <section class="left-container">
+        <div class="add-task">
+          <img
+            class="add-icon-img"
+            id="plus-icon"
+            src="./images/plus-emoji.png"
+            alt="Add Icon"
+            title="Add Task"
+            onclick="myOpenForm('Add')"
+          />
+          <h2>Task Actions</h2>
+        </div>
+        <button class="left-button">To Do</button>
+        <button class="left-button">In Progress</button>
+        <button class="left-button">Review</button>
+        <button class="left-button">Done</button>
+        <button class="left-button">Reports</button>
+      </section>
+      <!-- Left menu bar ends here -->
+
+      <!-- Body content to display the cards starts here -->
+      <section class="middle-container" id="m-container">
+        <div class="flex-card" id="Task1">
+          <img
+            class="card-icon-img"
+            src="images/pencil-square.svg"
+            alt="Edit Icon"
+            title="Edit Task"
+            id="temp123"
+            onclick="myEditTask(this)"
+          />
+          <img
+            class="card-icon-img"
+            src="images/delete-icon.png"
+            alt="Delete Icon"
+            onclick="myRemoveTask(this)"
+            title="Delete Task"
+            id="Del1"
+          />
+          <div class="card-text">
+            <h5>Task Name:</h5>
+            <p>Pay Rent</p>
+            <h5>Description:</h5>
+            <p>Pay Rent</p>
+            <h5>Assigned To:</h5>
+            <p>Senthil</p>
+            <h5>Due Date:</h5>
+            <p>2021-09-12</p>
+            <h5>Status:</h5>
+            <p>In-Progress</p>
+          </div>
+        </div>
+        <div class="flex-card" id="Task2">
+          <img
+            class="card-icon-img"
+            src="images/pencil-square.svg"
+            alt="Edit Icon"
+            title="Edit Task"
+            id="temp124"
+            onclick="myEditTask(this)"
+          />
+          <img
+            class="card-icon-img"
+            src="images/delete-icon.png"
+            alt="Delete Icon"
+            title="Delete Task"
+            id="Del2"
+            onclick="myRemoveTask(this)"
+          />
+          <div class="card-text">
+            <h5>Task Name:</h5>
+            <p>Finish JavaScript</p>
+            <h5>Description:</h5>
+            <p>Finish JavaScript</p>
+            <h5>Assigned To:</h5>
+            <p>Armstrong</p>
+            <h5>Due Date:</h5>
+            <p>2021-09-10</p>
+            <h5>Status:</h5>
+            <p>In-Progress</p>
+          </div>
+        </div>
+        <div class="flex-card" id="Task3">
+          <img
+            class="card-icon-img"
+            src="images/pencil-square.svg"
+            alt="Edit Icon"
+            title="Edit Task"
+            id="temp125"
+            onclick="myEditTask(this)"
+          />
+          <img
+            class="card-icon-img"
+            src="images/delete-icon.png"
+            alt="Delete Icon"
+            title="Delete Task"
+            id="Del3"
+            onclick="myRemoveTask(this)"
+          />
+          <div class="card-text">
+            <h5>Task Name:</h5>
+            <p>Finish HTML & CSS</p>
+            <h5>Description:</h5>
+            <p>Finish HTML & CSS</p>
+            <h5>Assigned To:</h5>
+            <p>Armstrong & Senthil</p>
+            <h5>Due Date:</h5>
+            <p>2021-09-03</p>
+            <h5>Status:</h5>
+            <p>In-Progress</p>
+          </div>
+        </div>
+        <div class="flex-card" id="Task4">
+          <img
+            class="card-icon-img"
+            src="images/pencil-square.svg"
+            alt="Edit Icon"
+            title="Edit Task"
+            id="temp126"
+            onclick="myEditTask(this)"
+          />
+          <img
+            class="card-icon-img"
+            src="images/delete-icon.png"
+            alt="Delete Icon"
+            title="Delete Task"
+            id="Del4"
+            onclick="myRemoveTask(this)"
+          />
+          <div class="card-text">
+            <h5>Task Name:</h5>
+            <p>Pay Utility Bill</p>
+            <h5>Description:</h5>
+            <p>Pay Utility Bill</p>
+            <h5>Assigned To:</h5>
+            <p>Senthil</p>
+            <h5>Due Date:</h5>
+            <p>2021-09-06</p>
+            <h5>Status:</h5>
+            <p>In-Progress</p>
+          </div>
+        </div>
+        <div class="flex-card" id="Task5">
+          <img
+            class="card-icon-img"
+            src="images/pencil-square.svg"
+            alt="Edit Icon"
+            title="Edit Task"
+            id="temp127"
+            onclick="myEditTask(this)"
+          />
+          <img
+            class="card-icon-img"
+            src="images/delete-icon.png"
+            alt="Delete Icon"
+            title="Delete Task"
+            id="Del5"
+            onclick="myRemoveTask(this)"
+          />
+          <div class="card-text">
+            <h5>Task Name:</h5>
+            <p>Cook Biriyani</p>
+            <h5>Description:</h5>
+            <p>Cook Biriyani</p>
+            <h5>Assigned To:</h5>
+            <p>Armstrong</p>
+            <h5>Due Date:</h5>
+            <p>2021-09-09</p>
+            <h5>Status:</h5>
+            <p>In-Progress</p>
+          </div>
+        </div>
+        <div class="flex-card" id="Task6">
+          <img
+            class="card-icon-img"
+            src="images/pencil-square.svg"
+            alt="Edit Icon"
+            title="Edit Task"
+            id="temp128"
+            onclick="myEditTask(this)"
+          />
+          <img
+            class="card-icon-img"
+            src="images/delete-icon.png"
+            alt="Delete Icon"
+            title="Delete Task"
+            id="Del6"
+            onclick="myRemoveTask(this)"
+          />
+          <div class="card-text">
+            <h5>Task Name:</h5>
+            <p>Buy Groceries</p>
+            <h5>Description:</h5>
+            <p>Buy Groceries</p>
+            <h5>Assigned To:</h5>
+            <p>Armstrong</p>
+            <h5>Due Date:</h5>
+            <p>2021-09-10</p>
+            <h5>Status:</h5>
+            <p>In-Progress</p>
+          </div>
+        </div>
+      </section>
+      <!-- Body content to display the cards ends here -->
+    </section>
+
+    <!-- Modal -->
+    <div class="form-popup" id="Form-modal">
+      <form class="form-container" id="form-task">
+        <h2 class="form-header-h2" id="form-header">
+          Task Details<span class="form-header-h2-sub"> - Add /Edit</span>
+        </h2>
+        <div>
+          <label for="taskname" class="form-label">Task Name </label>
+          <input type="text" class="form-control" id="taskname" required />
+        </div>
+        <div>
+          <label for="duedate" class="form-label">Due Date</label>
+          <input type="date" class="form-control" id="duedate" />
+        </div>
+        <div>
+          <label for="assignedto" class="form-label">Assigned To</label>
+          <input type="text" class="form-control" id="assignedto" required />
+        </div>
+        <div>
+          <label for="taskdescription" class="form-label"
+            >Task Description</label
+          >
+          <textarea
+            class="form-control"
+            id="taskdescription"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+        <div>
+          <label for="taskstatus" class="form-label">Status</label>
+          <select id="taskstatus" class="form-select">
+            <option>To Do</option>
+            <option>In-Progress</option>
+            <option>Review</option>
+            <option>Done</option>
+          </select>
+          <input type="hidden" id="add-edit" name="add-edit-name" />
+          <input type="hidden" id="edit-parent-id" name="edit-parent-name" />
+        </div>
+        <div class="form-footer">
+          <button type="button" class="form-btn" onclick="myCloseForm()">
+            Cancel
+          </button>
+          <button type="button" class="form-btn" onclick="myAddTask()">
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Footer Starts here -->
+    <footer class="footer-text">
+      <h6>
+        Copyright A&S solutions 2021....Contact Armstrong /Senthil for any
+        queries....
+      </h6>
+    </footer>
+    <!-- Footer Ends here -->
+  </body>
+</html>

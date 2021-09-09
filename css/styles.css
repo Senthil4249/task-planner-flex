@@ -1,0 +1,239 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.header-container {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  background-color: rgb(142, 192, 175);
+  justify-content: space-between;
+  font-family: Helvetica, Arial, sans-serif;
+  flex-flow: row wrap;
+  margin: 0;
+  overflow: hidden;
+}
+
+.logo-image {
+  height: 95%;
+  width: 70px;
+  margin-left: 10px;
+  margin-top: 2px;
+}
+
+.heading-text {
+  align-self: center;
+  margin: 1%;
+}
+
+.search-section {
+  align-self: center;
+}
+
+.contact-link {
+  padding-left: 5px;
+  margin-right: 10px;
+  align-self: center;
+}
+
+.left-container {
+  height: 540px;
+  width: 18%;
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: rgb(143, 250, 214);
+  align-items: center;
+  font-family: Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.add-task {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.add-task > img {
+  /* border: 1px solid blue; */
+  height: 35px;
+  display: block;
+  /* float: right; */
+  /* margin-top: 60px; */
+  width: 35px;
+  padding: 3px;
+  margin-top: 10px;
+  justify-content: right;
+  align-items: right;
+  opacity: 1;
+}
+
+.left-button {
+  width: 55%;
+  padding: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.middle-container {
+  height: 540px;
+  width: 82%;
+  left: 20%;
+  display: flex;
+  flex-flow: row wrap;
+  background-color: rgb(228, 177, 238);
+  align-items: start;
+  /* justify-content: center; */
+  font-family: Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  padding: 2px;
+  overflow: auto;
+}
+
+.overall-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-card {
+  height: 260px;
+  width: 240px;
+  display: block;
+  box-sizing: border-box;
+  /* min-height: 100px;
+  min-width: 100px; */
+  border: 2px solid black;
+  margin: 2px 2px;
+  background-color: beige;
+  flex-shrink: 1;
+  overflow: auto;
+}
+
+.card-text {
+  margin-left: 5px;
+}
+
+.card-text > h5 {
+  margin-top: 4px;
+  margin-bottom: 1px;
+  line-height: 110%;
+  box-sizing: border-box;
+}
+
+.card-text > p {
+  font-size: 0.8em;
+  box-sizing: border-box;
+  margin-top: 2px;
+  margin-bottom: 4px;
+  overflow-wrap: break-word;
+}
+
+.card-icon-img {
+  /* border: 1px solid blue; */
+  height: 20px;
+  float: right;
+  width: 20px;
+  justify-content: end;
+  align-items: end;
+}
+
+.footer-text {
+  display: flex;
+  margin-top: 5px;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 0;
+}
+
+/* W3 Schools Example */
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  /* margin: auto; */
+  /* bottom: 200px; */
+  top: 90px;
+  left: 50%;
+  width: 310px;
+  margin-left: -155px; /*set to a negative number 1/2 of your width*/
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 400px;
+  padding: 10px;
+  box-sizing: border-box;
+  /* background-color: white; */
+  background-color: rgb(175, 173, 173);
+  font-family: Helvetica, Arial, sans-serif;
+  border-radius: 2%;
+  border: 2px solid blue;
+}
+
+.form-header-h2 {
+  text-align: center;
+  font-weight: bold;
+}
+
+.form-header-h2-sub {
+  font-size: 16px;
+  font-weight: normal;
+  font-style: italic;
+  text-align: right;
+}
+
+.form-control,
+.form-select {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-footer {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.form-btn {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 600px) {
+  .left-container {
+    width: 30%;
+  }
+  .add-task > h2 {
+    font-size: 18px;
+  }
+  .middle-container {
+    width: 70%;
+    left: 30%;
+  }
+  .left-button {
+    width: 85%;
+    padding: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 0.8em;
+  }
+  .flex-card {
+    width: 100%;
+  }
+}
