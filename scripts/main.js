@@ -34,29 +34,6 @@ function myClearForm(p1) {
 }
 
 function myAddTask() {
-  let uID = Date.now().toString();
-  let mainCard = document.createElement("div");
-
-  mainCard.id = "MC-" + uID;
-  mainCard.className = "flex-card";
-
-  let img1 = document.createElement("img");
-  let img2 = document.createElement("img");
-
-  img1.src = "images/pencil-square.svg";
-  img1.alt = "Edit Icon";
-  img1.title = "Edit Task";
-  img1.className = "card-icon-img";
-  img1.id = "IME-" + Date.now().toString();
-  img1.setAttribute("onclick", "myEditTask(this)");
-
-  img2.src = "images/delete-icon.png";
-  img2.alt = "Delete Icon";
-  img2.title = "Delete Task";
-  img2.className = "card-icon-img";
-  img2.setAttribute("onclick", "myRemoveTask(this)");
-  img2.id = "IMD-" + Date.now().toString();
-
   // Get Form Values
   const strTaskNameValue = document.querySelector("#taskname").value;
   const strDescriptionValue = document.querySelector("#taskdescription").value;
@@ -64,72 +41,94 @@ function myAddTask() {
   const strDueDateValue = document.querySelector("#duedate").value;
   const strStatusValue = document.querySelector("#taskstatus").value;
 
-  // console.log(mystatus);
+  if (strTaskNameValue.trim()) {
+    let uID = Date.now().toString();
+    let mainCard = document.createElement("div");
 
-  let cardText = document.createElement("div");
-  cardText.className = "card-text";
+    mainCard.id = "Task-" + uID;
+    mainCard.className = "flex-card";
 
-  let h51L = document.createElement("h5");
-  let h52L = document.createElement("h5");
-  let h53L = document.createElement("h5");
-  let h54L = document.createElement("h5");
-  let h55L = document.createElement("h5");
-  let tnameV = document.createElement("p");
-  let tdescV = document.createElement("p");
-  let assignedToV = document.createElement("p");
-  let duedateV = document.createElement("p");
-  let statusV = document.createElement("p");
+    let img1 = document.createElement("img");
+    let img2 = document.createElement("img");
 
-  let strTaskNameLabel = "Task Name: ";
-  let strDescriptionLabel = "Description: ";
-  let strAssignedToLabel = "Assigned To: ";
-  let strDueDateLabel = "Due Date: ";
-  let strStatusLabel = "Status: ";
+    img1.src = "images/pencil-square.svg";
+    img1.alt = "Edit Icon";
+    img1.title = "Edit Task";
+    img1.className = "card-icon-img";
+    img1.id = "IME-" + Date.now().toString();
+    img1.setAttribute("onclick", "myEditTask(this)");
 
-  // Adding Label elements
-  h51L.textContent = strTaskNameLabel;
-  h52L.textContent = strDescriptionLabel;
-  h53L.textContent = strAssignedToLabel;
-  h54L.textContent = strDueDateLabel;
-  h55L.textContent = strStatusLabel;
+    img2.src = "images/delete-icon.png";
+    img2.alt = "Delete Icon";
+    img2.title = "Delete Task";
+    img2.className = "card-icon-img";
+    img2.setAttribute("onclick", "myRemoveTask(this)");
+    img2.id = "IMD-" + Date.now().toString();
 
-  // Adding Values from the Form Elements
-  tnameV.textContent = strTaskNameValue;
-  tdescV.textContent = strDescriptionValue;
-  assignedToV.textContent = strAssignedToValue;
-  duedateV.textContent = strDueDateValue;
-  statusV.textContent = strStatusValue;
+    let cardText = document.createElement("div");
+    cardText.className = "card-text";
 
-  // Adding the Card-Text Structure into the HTML page
-  cardText.appendChild(h51L);
-  cardText.appendChild(tnameV);
-  cardText.appendChild(h52L);
-  cardText.appendChild(tdescV);
-  cardText.appendChild(h53L);
-  cardText.appendChild(assignedToV);
-  cardText.appendChild(h54L);
-  cardText.appendChild(duedateV);
-  cardText.appendChild(h55L);
-  cardText.appendChild(statusV);
+    let h51L = document.createElement("h5");
+    let h52L = document.createElement("h5");
+    let h53L = document.createElement("h5");
+    let h54L = document.createElement("h5");
+    let h55L = document.createElement("h5");
+    let tnameV = document.createElement("p");
+    let tdescV = document.createElement("p");
+    let assignedToV = document.createElement("p");
+    let duedateV = document.createElement("p");
+    let statusV = document.createElement("p");
 
-  mainCard.appendChild(img1);
-  mainCard.appendChild(img2);
-  mainCard.appendChild(cardText);
+    let strTaskNameLabel = "Task Name: ";
+    let strDescriptionLabel = "Description: ";
+    let strAssignedToLabel = "Assigned To: ";
+    let strDueDateLabel = "Due Date: ";
+    let strStatusLabel = "Status: ";
 
-  let opType = document.querySelector("#add-edit").value;
-  let editParentId = document.querySelector("#edit-parent-id").value;
-  if (opType === "A") {
-    //    console.log("Main Card... : ", mainCard);
-    document.getElementById("m-container").appendChild(mainCard);
-  } else {
-    let parentEditNode = document.getElementById(editParentId);
-    document
-      .getElementById("m-container")
-      .replaceChild(mainCard, parentEditNode);
+    // Adding Label elements
+    h51L.textContent = strTaskNameLabel;
+    h52L.textContent = strDescriptionLabel;
+    h53L.textContent = strAssignedToLabel;
+    h54L.textContent = strDueDateLabel;
+    h55L.textContent = strStatusLabel;
+
+    // Adding Values from the Form Elements
+    tnameV.textContent = strTaskNameValue;
+    tdescV.textContent = strDescriptionValue;
+    assignedToV.textContent = strAssignedToValue;
+    duedateV.textContent = strDueDateValue;
+    statusV.textContent = strStatusValue;
+
+    // Adding the Card-Text Structure into the HTML page
+    cardText.appendChild(h51L);
+    cardText.appendChild(tnameV);
+    cardText.appendChild(h52L);
+    cardText.appendChild(tdescV);
+    cardText.appendChild(h53L);
+    cardText.appendChild(assignedToV);
+    cardText.appendChild(h54L);
+    cardText.appendChild(duedateV);
+    cardText.appendChild(h55L);
+    cardText.appendChild(statusV);
+
+    mainCard.appendChild(img1);
+    mainCard.appendChild(img2);
+    mainCard.appendChild(cardText);
+
+    let opType = document.querySelector("#add-edit").value;
+    let editParentId = document.querySelector("#edit-parent-id").value;
+    if (opType === "A") {
+      document.getElementById("m-container").appendChild(mainCard);
+    } else {
+      let parentEditNode = document.getElementById(editParentId);
+      document
+        .getElementById("m-container")
+        .replaceChild(mainCard, parentEditNode);
+    }
   }
-
   myCloseForm();
 }
+
 // Edit Task Function Starts here
 function myEditTask(edid) {
   elem = document.getElementById(edid.id);
