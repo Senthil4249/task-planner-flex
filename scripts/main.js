@@ -60,7 +60,7 @@ function myAddTask() {
     img1.id = "IME-" + Date.now().toString();
     img1.setAttribute("onclick", "myEditTask(this)");
 
-    img2.src = "images/delete-icon.png";
+    img2.src = "images/trash.svg";
     img2.alt = "Delete Icon";
     img2.title = "Delete Task";
     img2.className = "card-icon-img";
