@@ -115,6 +115,11 @@ body {
   overflow: auto;
 }
 
+.flex-card:hover {
+  cursor: cell;
+  background-color: rgb(241, 241, 136);
+}
+
 .card-text {
   margin-left: 5px;
 }
@@ -143,6 +148,11 @@ body {
   align-items: end;
 }
 
+.card-icon-img:hover {
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+}
 .footer-text {
   display: flex;
   margin-top: 5px;
@@ -174,9 +184,20 @@ body {
   box-sizing: border-box;
   /* background-color: white; */
   background-color: rgb(175, 173, 173);
+  animation: fadebackground 6s infinite;
+
   font-family: Helvetica, Arial, sans-serif;
   border-radius: 2%;
   border: 2px solid blue;
+}
+
+@keyframes fadebackground {
+  from {
+    background-color: rgb(175, 173, 173);
+  }
+  to {
+    background-color: #2eb07b;
+  }
 }
 
 .form-header-h2 {
