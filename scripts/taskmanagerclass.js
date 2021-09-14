@@ -51,7 +51,6 @@ class TaskManager_Class {
 
     TaskCardObjectList.unshift(TaskCardObject);
     this.render();
-    myClearForm("Add");
   }
 
   done_undone(cardid) {

@@ -61,6 +61,7 @@ function myAddTask() {
     myTaskCardList = new TaskManager_Class(cardSection);
 
     myTaskCardList.addElement();
+    myClearForm("Add");
   } else {
     myTaskCardList.updateElement();
   }
