@@ -122,6 +122,7 @@ class TaskManager_Class {
       const mainCard = document.createElement("div");
       const editBtn = document.createElement("img");
       const delBtn = document.createElement("img");
+      const statusBtn = document.createElement("img");
       const cardText = document.createElement("div");
       const h51L = document.createElement("h5");
       const h52L = document.createElement("h5");
@@ -133,6 +134,7 @@ class TaskManager_Class {
       const assignedToV = document.createElement("p");
       const duedateV = document.createElement("p");
       const statusV = document.createElement("p");
+      let statusImgName = "";
 
       h51L.innerText = object_item.TaskNameL;
       tnameV.innerText = object_item.TaskNameV;
@@ -146,6 +148,21 @@ class TaskManager_Class {
       statusV.innerText = object_item.TaskStatusV;
       statusV.className = "card-status-value";
       statusV.setAttribute("data-id", object_item.id);
+
+      switch (object_item.TaskStatusV) {
+        case "To Do":
+          statusImgName = "images/todo.png";
+          break;
+        case "In-Progress":
+          statusImgName = "images/in-progress.png";
+          break;
+        case "Review":
+          statusImgName = "images/review.png";
+          break;
+        case "Done":
+          statusImgName = "images/Done.svg";
+          break;
+      }
 
       mainCard.setAttribute("data-id", object_item.id);
       mainCard.className = "flex-card";
@@ -161,6 +178,7 @@ class TaskManager_Class {
       cardText.appendChild(duedateV);
       cardText.appendChild(h55L);
       cardText.appendChild(statusV);
+      cardText.appendChild(statusV);
 
       editBtn.setAttribute("data-id", object_item.id);
       editBtn.className = "card-icon-img";
@@ -174,6 +192,12 @@ class TaskManager_Class {
       delBtn.alt = "Delete Icon";
       delBtn.title = "Delete Task";
 
+      statusBtn.setAttribute("data-id", object_item.id);
+      statusBtn.classList.add("card-icon-img-status");
+      statusBtn.src = statusImgName;
+      statusBtn.alt = "Status Icon";
+      statusBtn.title = "Status Task";
+
       delBtn.addEventListener("click", function (d) {
         const deleteId = d.target.getAttribute("data-id");
         myTaskCardList.deleteElement(deleteId);
@@ -183,7 +207,7 @@ class TaskManager_Class {
         myTaskCardList.editElement(editId);
       });
 
-      statusV.addEventListener("click", function (e) {
+      statusBtn.addEventListener("click", function (e) {
         const doneId = e.target.getAttribute("data-id");
         myTaskCardList.done_undone(doneId);
       });
@@ -196,6 +220,7 @@ class TaskManager_Class {
 
       mainCard.appendChild(delBtn);
       mainCard.appendChild(editBtn);
+      cardText.appendChild(statusBtn);
       mainCard.appendChild(cardText);
 
       this._containerElementId.appendChild(mainCard);

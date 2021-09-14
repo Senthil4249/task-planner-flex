@@ -31,7 +31,11 @@ body {
 }
 
 .search-section {
+  display: flex;
   align-self: center;
+}
+.search-section > label {
+  padding-right: 2px;
 }
 
 .contact-link {
@@ -61,8 +65,6 @@ body {
   /* border: 1px solid blue; */
   height: 35px;
   display: block;
-  /* float: right; */
-  /* margin-top: 60px; */
   width: 35px;
   padding: 3px;
   margin-top: 15px;
@@ -99,7 +101,6 @@ body {
   flex-flow: row wrap;
   background-color: rgb(228, 177, 238);
   align-items: start;
-  /* justify-content: center; */
   font-family: Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   padding: 2px;
@@ -116,8 +117,6 @@ body {
   width: 240px;
   display: block;
   box-sizing: border-box;
-  /* min-height: 100px;
-  min-width: 100px; */
   border: 2px solid black;
   margin: 2px 2px;
   background-color: beige;
@@ -164,29 +163,25 @@ body {
   width: 25px;
 }
 
-.card-status-value {
+.card-icon-img-status {
+  /* border: 1px solid blue; */
+  height: 30px;
+  float: left;
+  width: 30px;
+  margin-left: 5px;
+  justify-content: end;
+  align-items: end;
+}
+
+.card-icon-img-status:hover {
   cursor: pointer;
+  height: 35px;
+  width: 35px;
 }
 
 .checked > p {
-  /* background: #888; */
-  /* color: #fff; */
   text-decoration: line-through;
 }
-
-/* Add a "checked" mark when clicked on */
-/* card-text.checked::before {
-  content: "";
-  position: absolute;
-  border-color: #fff;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 10px;
-  left: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
-} */
 
 .footer-text {
   display: flex;
@@ -195,8 +190,6 @@ body {
   align-items: start;
   margin-bottom: 0;
 }
-
-/* W3 Schools Example */
 
 /* The popup form - hidden by default */
 .form-popup {
@@ -217,10 +210,8 @@ body {
   max-width: 400px;
   padding: 10px;
   box-sizing: border-box;
-  /* background-color: white; */
   background-color: rgb(175, 173, 173);
-  animation: fadebackground 6s infinite;
-
+  animation: fadebackground 8s infinite;
   font-family: Helvetica, Arial, sans-serif;
   border-radius: 2%;
   border: 2px solid blue;
@@ -228,7 +219,7 @@ body {
 
 @keyframes fadebackground {
   from {
-    background-color: rgb(175, 173, 173);
+    background-color: rgb(245, 234, 234);
   }
   to {
     background-color: #2eb07b;
@@ -270,6 +261,9 @@ body {
 
 /* Media Queries */
 @media only screen and (max-width: 600px) {
+  .search-section {
+    display: none;
+  }
   .left-container {
     width: 30%;
   }
