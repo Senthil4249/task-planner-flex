@@ -163,6 +163,31 @@ body {
   height: 25px;
   width: 25px;
 }
+
+.card-status-value {
+  cursor: pointer;
+}
+
+.checked > p {
+  /* background: #888; */
+  /* color: #fff; */
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+/* card-text.checked::before {
+  content: "";
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+} */
+
 .footer-text {
   display: flex;
   margin-top: 5px;

@@ -8,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/styles.css" />
     <script type="text/javascript" src="./scripts/main.js"></script>
+    <script type="text/javascript" src="./scripts/taskmanagerclass.js"></script>
 
     <title>TaskPlan</title>
   </head>
-  <body>
+  <body onunload="myUnLoadFunction()" onload="myLoadFunction()">
     <!-- Header with menu bar starts here -->
     <header class="header-container">
       <section class="logo-image-section">
@@ -25,9 +26,6 @@
       </section>
     </header>
     <!-- Header menu bear ends here -->
-
-    <!-- Icon to diaplay for adding task starts here -->
-    <!-- Icon to display for adding task ends here -->
 
     <!-- Left menu bar starts here -->
     <section class="overall-container">
@@ -53,158 +51,7 @@
       <!-- Left menu bar ends here -->
 
       <!-- Body content to display the cards starts here -->
-      <section class="middle-container" id="m-container">
-        <div class="flex-card" id="Task1">
-          <img
-            class="card-icon-img"
-            src="images/pencil-square.svg"
-            alt="Edit Icon"
-            title="Edit Task"
-            id="temp123"
-            onclick="myEditTask(this)"
-          />
-          <img
-            class="card-icon-img"
-            src="images/trash.svg"
-            alt="Delete Icon"
-            onclick="myRemoveTask(this)"
-            title="Delete Task"
-            id="Del1"
-          />
-          <div class="card-text">
-            <h5>Task Name:</h5>
-            <p>Pay Rent</p>
-            <h5>Description:</h5>
-            <p>Pay Rent</p>
-            <h5>Assigned To:</h5>
-            <p>Senthil</p>
-            <h5>Due Date:</h5>
-            <p>2021-09-12</p>
-            <h5>Status:</h5>
-            <p>In-Progress</p>
-          </div>
-        </div>
-        <div class="flex-card" id="Task2">
-          <img
-            class="card-icon-img"
-            src="images/pencil-square.svg"
-            alt="Edit Icon"
-            title="Edit Task"
-            id="temp124"
-            onclick="myEditTask(this)"
-          />
-          <img
-            class="card-icon-img"
-            src="images/trash.svg"
-            alt="Delete Icon"
-            title="Delete Task"
-            id="Del2"
-            onclick="myRemoveTask(this)"
-          />
-          <div class="card-text">
-            <h5>Task Name:</h5>
-            <p>Finish JavaScript</p>
-            <h5>Description:</h5>
-            <p>Finish JavaScript</p>
-            <h5>Assigned To:</h5>
-            <p>Armstrong</p>
-            <h5>Due Date:</h5>
-            <p>2021-09-10</p>
-            <h5>Status:</h5>
-            <p>In-Progress</p>
-          </div>
-        </div>
-        <div class="flex-card" id="Task3">
-          <img
-            class="card-icon-img"
-            src="images/pencil-square.svg"
-            alt="Edit Icon"
-            title="Edit Task"
-            id="temp125"
-            onclick="myEditTask(this)"
-          />
-          <img
-            class="card-icon-img"
-            src="images/trash.svg"
-            alt="Delete Icon"
-            title="Delete Task"
-            id="Del3"
-            onclick="myRemoveTask(this)"
-          />
-          <div class="card-text">
-            <h5>Task Name:</h5>
-            <p>Finish HTML & CSS</p>
-            <h5>Description:</h5>
-            <p>Finish HTML & CSS</p>
-            <h5>Assigned To:</h5>
-            <p>Armstrong & Senthil</p>
-            <h5>Due Date:</h5>
-            <p>2021-09-03</p>
-            <h5>Status:</h5>
-            <p>In-Progress</p>
-          </div>
-        </div>
-        <div class="flex-card" id="Task4">
-          <img
-            class="card-icon-img"
-            src="images/pencil-square.svg"
-            alt="Edit Icon"
-            title="Edit Task"
-            id="temp126"
-            onclick="myEditTask(this)"
-          />
-          <img
-            class="card-icon-img"
-            src="images/trash.svg"
-            alt="Delete Icon"
-            title="Delete Task"
-            id="Del4"
-            onclick="myRemoveTask(this)"
-          />
-          <div class="card-text">
-            <h5>Task Name:</h5>
-            <p>Pay Utility Bill</p>
-            <h5>Description:</h5>
-            <p>Pay Utility Bill</p>
-            <h5>Assigned To:</h5>
-            <p>Senthil</p>
-            <h5>Due Date:</h5>
-            <p>2021-09-06</p>
-            <h5>Status:</h5>
-            <p>In-Progress</p>
-          </div>
-        </div>
-        <div class="flex-card" id="Task5">
-          <img
-            class="card-icon-img"
-            src="images/pencil-square.svg"
-            alt="Edit Icon"
-            title="Edit Task"
-            id="temp127"
-            onclick="myEditTask(this)"
-          />
-          <img
-            class="card-icon-img"
-            src="images/trash.svg"
-            alt="Delete Icon"
-            title="Delete Task"
-            id="Del5"
-            onclick="myRemoveTask(this)"
-          />
-          <div class="card-text">
-            <h5>Task Name:</h5>
-            <p>Cook Biriyani</p>
-            <h5>Description:</h5>
-            <p>Cook Biriyani</p>
-            <h5>Assigned To:</h5>
-            <p>Armstrong</p>
-            <h5>Due Date:</h5>
-            <p>2021-09-09</p>
-            <h5>Status:</h5>
-            <p>In-Progress</p>
-          </div>
-        </div>
-      </section>
+      <section class="middle-container" id="m-container"></section>
       <!-- Body content to display the cards ends here -->
     </section>
 
@@ -220,7 +67,15 @@
         </div>
         <div>
           <label for="duedate" class="form-label">Due Date</label>
-          <input type="date" class="form-control" id="duedate" required />
+          <input
+            type="date"
+            class="form-control"
+            id="duedate"
+            min="2010-01-01"
+            max="2030-12-31"
+            onkeydown="return false"
+            required
+          />
         </div>
         <div>
           <label for="assignedto" class="form-label">Assigned To</label>
@@ -252,7 +107,12 @@
           <button type="button" class="form-btn" onclick="myCloseForm()">
             Cancel
           </button>
-          <button type="button" class="form-btn" onclick="myAddTask()">
+          <button
+            type="button"
+            id="add-btn"
+            class="form-btn"
+            onclick="myValidateForm()"
+          >
             Save changes
           </button>
         </div>
