@@ -1,5 +1,23 @@
 // OM Murugan Thunai
 
+let btnCollection = document.querySelectorAll(".left-button");
+
+function myAddEvents() {
+  let plusIcon = document.querySelector("#plus-icon");
+  let formCancelBtn = document.querySelector("#form-cancel-btn");
+  let formSaveBtn = document.querySelector("#form-save-btn");
+  plusIcon.addEventListener("click", myAddOpenForm);
+  formCancelBtn.addEventListener("click", myCloseForm);
+  formSaveBtn.addEventListener("click", myValidateForm);
+  btnCollection.forEach((btn) => {
+    btn.addEventListener("click", showTask);
+  });
+}
+
+function myAddOpenForm() {
+  myOpenForm("Add");
+}
+
 function myValidateForm() {
   const TaskName = document.querySelector("#taskname").value;
   const TaskDesc = document.querySelector("#taskdescription").value;
@@ -47,8 +65,10 @@ function myClearForm(p1) {
   document.querySelector("#taskstatus").value = "To Do";
   if (p1 === "Add") {
     document.querySelector("#add-edit").value = "A";
+    document.querySelector("#form-header").innerHTML = "Add Task Details";
   } else if (p1 === "Edit") {
     document.querySelector("#add-edit").value = "E";
+    document.querySelector("#form-header").innerHTML = "Edit Task Details";
   }
 }
 
@@ -56,10 +76,6 @@ function myAddTask() {
   const addEdit = document.querySelector("#add-edit").value;
 
   if (addEdit === "A") {
-    const cardSection = document.querySelector("#m-container");
-
-    myTaskCardList = new TaskManager_Class(cardSection);
-
     myTaskCardList.addElement();
     myClearForm("Add");
   } else {
@@ -67,6 +83,34 @@ function myAddTask() {
   }
 
   myCloseForm();
+}
+
+function showTask(obj) {
+  for (let i = 0; i < btnCollection.length; i++) {
+    if (btnCollection[i].textContent === obj.target.textContent) {
+      btnCollection[i].style.backgroundColor = "lightgreen";
+    } else {
+      btnCollection[i].style.backgroundColor = "";
+    }
+  }
+
+  let currentButtonText = obj.target.textContent;
+  if (obj.target.textContent === "In Progress") {
+    currentButtonText = "In-Progress";
+  }
+
+  TaskCardObjectList.forEach((item) => {
+    if (
+      currentButtonText.trim() === item.TaskStatusV.trim() ||
+      currentButtonText === "All Task" ||
+      currentButtonText === "Reports"
+    ) {
+      item.TaskVisibility = true;
+    } else {
+      item.TaskVisibility = false;
+    }
+  });
+  myTaskCardList.render();
 }
 
 function myUnLoadFunction() {
@@ -80,5 +124,13 @@ function myLoadFunction() {
   Array.prototype.push.apply(TaskCardObjectList, TaskCardObjectList1);
   const cardSection = document.querySelector("#m-container");
   myTaskCardList = new TaskManager_Class(cardSection);
+  myAddEvents();
+  btnCollection[0].style.backgroundColor = "lightgreen";
+  TaskCardObjectList.forEach((item) => {
+    item.TaskVisibility = true;
+  });
   myTaskCardList.render();
 }
+
+document.body.onunload = myUnLoadFunction;
+document.body.onload = myLoadFunction;

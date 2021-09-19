@@ -115,7 +115,7 @@ body {
 .flex-card {
   height: 260px;
   width: 240px;
-  display: block;
+  /* display: block; */
   box-sizing: border-box;
   border: 2px solid black;
   margin: 2px 2px;
@@ -195,8 +195,6 @@ body {
 .form-popup {
   display: none;
   position: fixed;
-  /* margin: auto; */
-  /* bottom: 200px; */
   top: 90px;
   left: 50%;
   width: 310px;
@@ -229,13 +227,6 @@ body {
 .form-header-h2 {
   text-align: center;
   font-weight: bold;
-}
-
-.form-header-h2-sub {
-  font-size: 16px;
-  font-weight: normal;
-  font-style: italic;
-  text-align: right;
 }
 
 .form-control,

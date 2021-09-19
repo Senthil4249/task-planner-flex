@@ -7,12 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/styles.css" />
-    <script type="text/javascript" src="./scripts/main.js"></script>
-    <script type="text/javascript" src="./scripts/taskmanagerclass.js"></script>
 
     <title>TaskPlan</title>
   </head>
-  <body onunload="myUnLoadFunction()" onload="myLoadFunction()">
+  <body>
     <!-- Header with menu bar starts here -->
     <header class="header-container">
       <section class="logo-image-section">
@@ -37,17 +35,15 @@
             src="./images/plus-emoji.png"
             alt="Add Icon"
             title="Add Task"
-            onclick="myOpenForm('Add')"
           />
           <h2>Task</h2>
         </div>
-        <h3>Actions</h3>
+        <h3>Show</h3>
         <button class="left-button">All Task</button>
         <button class="left-button">To Do</button>
         <button class="left-button">In Progress</button>
         <button class="left-button">Review</button>
         <button class="left-button">Done</button>
-        <button class="left-button">Reports</button>
       </section>
       <!-- Left menu bar ends here -->
 
@@ -59,9 +55,7 @@
     <!-- Modal -->
     <div class="form-popup" id="Form-modal">
       <form class="form-container" id="form-task">
-        <h2 class="form-header-h2" id="form-header">
-          Task Details<span class="form-header-h2-sub"> - Add /Edit</span>
-        </h2>
+        <h2 class="form-header-h2" id="form-header">Task Details</h2>
         <div>
           <label for="taskname" class="form-label">Task Name </label>
           <input type="text" class="form-control" id="taskname" required />
@@ -105,15 +99,10 @@
           <input type="hidden" id="edit-parent-id" name="edit-parent-name" />
         </div>
         <div class="form-footer">
-          <button type="button" class="form-btn" onclick="myCloseForm()">
+          <button id="form-cancel-btn" type="button" class="form-btn">
             Cancel
           </button>
-          <button
-            type="button"
-            id="add-btn"
-            class="form-btn"
-            onclick="myValidateForm()"
-          >
+          <button type="button" id="form-save-btn" class="form-btn">
             Save changes
           </button>
         </div>
@@ -128,5 +117,12 @@
       </h6>
     </footer>
     <!-- Footer Ends here -->
+
+    <script type="text/javascript" src="./scripts/main.js" async></script>
+    <script
+      type="text/javascript"
+      src="./scripts/taskmanagerclass.js"
+      async
+    ></script>
   </body>
 </html>

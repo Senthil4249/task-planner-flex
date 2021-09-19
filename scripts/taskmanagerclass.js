@@ -47,6 +47,7 @@ class TaskManager_Class {
       TaskStatusL: "Task Status: ",
       TaskStatusV: strStatusValue,
       TaskIsDoneV: isdone,
+      TaskVisibility: true,
     };
 
     TaskCardObjectList.unshift(TaskCardObject);
@@ -117,7 +118,6 @@ class TaskManager_Class {
 
   render() {
     this._containerElementId.innerHTML = "";
-
     TaskCardObjectList.forEach((object_item) => {
       const mainCard = document.createElement("div");
       const editBtn = document.createElement("img");
@@ -135,6 +135,7 @@ class TaskManager_Class {
       const duedateV = document.createElement("p");
       const statusV = document.createElement("p");
       let statusImgName = "";
+      let statusImgAltText = "";
 
       h51L.innerText = object_item.TaskNameL;
       tnameV.innerText = object_item.TaskNameV;
@@ -152,15 +153,19 @@ class TaskManager_Class {
       switch (object_item.TaskStatusV) {
         case "To Do":
           statusImgName = "images/todo.png";
+          statusImgAltText = "Status: To Do";
           break;
         case "In-Progress":
           statusImgName = "images/in-progress.png";
+          statusImgAltText = "Status: In-Progress";
           break;
         case "Review":
           statusImgName = "images/review.png";
+          statusImgAltText = "Status: Review";
           break;
         case "Done":
           statusImgName = "images/Done.svg";
+          statusImgAltText = "Status: Done";
           break;
       }
 
@@ -195,8 +200,8 @@ class TaskManager_Class {
       statusBtn.setAttribute("data-id", object_item.id);
       statusBtn.classList.add("card-icon-img-status");
       statusBtn.src = statusImgName;
-      statusBtn.alt = "Status Icon";
-      statusBtn.title = "Status Task";
+      statusBtn.alt = statusImgAltText;
+      statusBtn.title = statusImgAltText;
 
       delBtn.addEventListener("click", function (d) {
         const deleteId = d.target.getAttribute("data-id");
@@ -207,10 +212,12 @@ class TaskManager_Class {
         myTaskCardList.editElement(editId);
       });
 
-      statusBtn.addEventListener("click", function (e) {
+      statusBtn.addEventListener("click", submitButtonChange);
+
+      function submitButtonChange(e) {
         const doneId = e.target.getAttribute("data-id");
         myTaskCardList.done_undone(doneId);
-      });
+      }
 
       if (object_item.TaskIsDoneV) {
         cardText.classList.add("checked");
@@ -224,6 +231,12 @@ class TaskManager_Class {
       mainCard.appendChild(cardText);
 
       this._containerElementId.appendChild(mainCard);
+
+      if (object_item.TaskVisibility === false) {
+        mainCard.style.display = "none";
+      } else {
+        mainCard.style.display = "block";
+      }
     });
   }
 }
