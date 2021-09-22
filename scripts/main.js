@@ -1,14 +1,25 @@
 // OM Murugan Thunai
 
+import { TaskCardObjectList, TaskManager_Class } from "./taskmanagerclass.js";
+
 let btnCollection = document.querySelectorAll(".left-button");
+const cardSection = document.querySelector("#m-container");
+let myTaskCardList = new TaskManager_Class(cardSection);
+// document.querySelector("#confirm-id").value = false;
+document.body.onunload = myUnLoadFunction;
+document.body.onload = myLoadFunction;
 
 function myAddEvents() {
   let plusIcon = document.querySelector("#plus-icon");
   let formCancelBtn = document.querySelector("#form-cancel-btn");
   let formSaveBtn = document.querySelector("#form-save-btn");
+  let alertOkBtn = document.querySelector("#alert-ok-btn");
+  let alertcancelbtn = document.querySelector("#alert-cancel-btn");
   plusIcon.addEventListener("click", myAddOpenForm);
   formCancelBtn.addEventListener("click", myCloseForm);
   formSaveBtn.addEventListener("click", myValidateForm);
+  alertOkBtn.addEventListener("click", myCloseAlert);
+  alertcancelbtn.addEventListener("click", myCloseAlert);
   btnCollection.forEach((btn) => {
     btn.addEventListener("click", showTask);
   });
@@ -26,19 +37,22 @@ function myValidateForm() {
   const dateArr = DueDate.split("-");
 
   if (TaskName === "") {
-    alert("Task Name must be filled out");
+    myAlert("Task Name cannot be left blank and must be filled out", "e");
     return false;
   } else if (DueDate === "") {
-    alert("Due Date must be filled out");
+    myAlert("Due Date cannot be left blank must be filled out", "e");
     return false;
   } else if (dateArr[0] > 2030 || dateArr[0] < 2010) {
-    alert("Date Value can only be between 01-01-2010 and 31-12-2030");
+    myAlert("Date Value can only be between 01-01-2010 and 31-12-2030", "w");
     return false;
   } else if (assignedTo === "") {
-    alert("Assigned To must be filled out");
+    myAlert("Assigned To cannot be left blank and must be filled out", "e");
     return false;
   } else if (TaskDesc === "") {
-    alert("Task Description must be filled out");
+    myAlert(
+      "Task Description cannot be left blank and must be filled out",
+      "e"
+    );
     return false;
   }
   myAddTask();
@@ -50,8 +64,40 @@ function myOpenForm(p1) {
   myClearForm(p1);
 }
 
+function myAlert(message, type) {
+  document.querySelector("#alert-modal").style.display = "block";
+  document.querySelector("#alert-label-id").innerText = message;
+  if (type === "e") {
+    document.querySelector("#alert-icon").src = "./images/error.jfif";
+    document.querySelector("#alert-header").innerText = "Error";
+    document.querySelector("#alert-label-id").style.color = "red";
+    document.querySelector("#alert-cancel-btn").style.display = "none";
+  } else if (type === "w") {
+    document.querySelector("#alert-icon").src = "./images/warning_icon.svg";
+    document.querySelector("#alert-header").innerText = "Warning";
+    document.querySelector("#alert-label-id").style.color = "brown";
+    document.querySelector("#alert-cancel-btn").style.display = "none";
+  } else if (type === "i") {
+    document.querySelector("#alert-icon").src = "./images/info-lg.svg";
+    document.querySelector("#alert-header").innerText = "Information";
+    document.querySelector("#alert-label-id").style.color = "blue";
+    document.querySelector("#alert-cancel-btn").style.display = "none";
+  } else {
+    document.querySelector("#alert-icon").src =
+      "./images/question-mark-icon.jpg";
+    document.querySelector("#alert-header").innerText = "";
+    document.querySelector("#alert-label-id").style.color = "black";
+    document.querySelector("#alert-cancel-btn").style.display = "inline";
+  }
+}
+
+function myCloseAlert(e) {
+  document.getElementById("alert-modal").style.display = "none";
+}
+
 function myCloseForm() {
   document.getElementById("Form-modal").style.display = "none";
+  document.getElementById("alert-modal").style.display = "none";
   document.getElementById("m-container").style.display = "flex";
 }
 
@@ -120,10 +166,8 @@ function myUnLoadFunction() {
 
 function myLoadFunction() {
   let TaskCardArr = localStorage.getItem("testJSON");
-  TaskCardObjectList1 = JSON.parse(TaskCardArr);
+  let TaskCardObjectList1 = JSON.parse(TaskCardArr);
   Array.prototype.push.apply(TaskCardObjectList, TaskCardObjectList1);
-  const cardSection = document.querySelector("#m-container");
-  myTaskCardList = new TaskManager_Class(cardSection);
   myAddEvents();
   btnCollection[0].style.backgroundColor = "lightgreen";
   TaskCardObjectList.forEach((item) => {
@@ -132,5 +176,4 @@ function myLoadFunction() {
   myTaskCardList.render();
 }
 
-document.body.onunload = myUnLoadFunction;
-document.body.onload = myLoadFunction;
+export { myTaskCardList, myOpenForm };

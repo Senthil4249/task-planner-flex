@@ -100,10 +100,44 @@
         </div>
         <div class="form-footer">
           <button id="form-cancel-btn" type="button" class="form-btn">
-            Cancel
+            <img
+              class="save-icon-img"
+              src="./images/error.jfif"
+              alt="Cancel
+          Image"
+              title="Cancel"
+            />
           </button>
           <button type="button" id="form-save-btn" class="form-btn">
-            Save changes
+            <!-- Save changes -->
+            <img
+              class="save-icon-img"
+              src="./images/save-icon.png"
+              alt="Save
+            Image"
+              title="Save"
+            />
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="alert-popup" id="alert-modal">
+      <form class="alert-container" id="alert-task">
+        <div class="alert-header-plus-img">
+          <img id="alert-icon" class="alert-icon-img" src="" alt="" />
+          <h2 class="alert-header-h2" id="alert-header">Message</h2>
+        </div>
+        <div>
+          <label for="alert-message" class="alert-label" id="alert-label-id"
+            >Alert</label
+          >
+          <input type="hidden" id="confirm-id" name="confirm-name" />
+        </div>
+        <div class="alert-footer">
+          <button type="button" id="alert-ok-btn" class="alert-btn">OK</button>
+          <button type="button" id="alert-cancel-btn" class="alert-btn">
+            Cancel
           </button>
         </div>
       </form>
@@ -118,11 +152,11 @@
     </footer>
     <!-- Footer Ends here -->
 
-    <script type="text/javascript" src="./scripts/main.js" async></script>
-    <script
+    <script type="module" src="./scripts/main.js" async></script>
+    <!-- <script
       type="text/javascript"
       src="./scripts/taskmanagerclass.js"
       async
-    ></script>
+    ></script> -->
   </body>
 </html>

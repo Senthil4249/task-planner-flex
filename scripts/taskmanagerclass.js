@@ -1,5 +1,5 @@
 // Om Murugan Thunai
-
+import { myTaskCardList, myOpenForm } from "./main.js";
 let TaskCardObjectList = [];
 
 class TaskManager_Class {
@@ -69,7 +69,7 @@ class TaskManager_Class {
   }
 
   deleteElement(cardid) {
-    const result = confirm("Are you Sure to delete this task?");
+    const result = confirm("Are you Sure you want to delete this task?");
     if (result) {
       const selectedDelIndex = TaskCardObjectList.findIndex(
         (card) => card.id == cardid
@@ -240,3 +240,5 @@ class TaskManager_Class {
     });
   }
 }
+
+export { TaskCardObjectList, TaskManager_Class };
