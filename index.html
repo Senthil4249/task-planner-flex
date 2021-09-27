@@ -6,9 +6,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- local style sheet in css folder -->
     <link rel="stylesheet" href="./css/styles.css" />
 
-    <title>TaskPlan</title>
+    <title>TaskPlanner</title>
   </head>
   <body>
     <!-- Header with menu bar starts here -->
@@ -17,18 +19,20 @@
         <img class="logo-image" src="./images/as-logo.jpeg" alt="Logo" />
       </section>
       <h1 class="heading-text">Task Planner</h1>
+
+      <!-- placed in seperate section for mobile view and right allignment -->
       <section class="search-section">
         <label for="search">Search</label>
         <input id="search" type="text" />
-        <a href="#" class="contact-link">Contact</a>
       </section>
     </header>
     <!-- Header menu bear ends here -->
 
-    <!-- Left menu bar starts here -->
+    <!-- Top menu bar(below NavBar) starts here -->
     <section class="overall-container">
       <section class="left-container">
         <div class="add-task">
+          <!-- Add New task Form icon -->
           <img
             class="add-icon-img"
             id="plus-icon"
@@ -38,30 +42,69 @@
           />
           <h2>Task</h2>
         </div>
-        <h3>Show</h3>
-        <button class="left-button">All Task</button>
-        <button class="left-button">To Do</button>
-        <button class="left-button">In Progress</button>
-        <button class="left-button">Review</button>
-        <button class="left-button">Done</button>
       </section>
-      <!-- Left menu bar ends here -->
-
-      <!-- Body content to display the cards starts here -->
-      <section class="middle-container" id="m-container"></section>
-      <!-- Body content to display the cards ends here -->
     </section>
+    <!-- Top menu bar ends here -->
 
-    <!-- Modal -->
+    <!-- Body content to display all the cards in the respective sections starts here -->
+    <section class="middle-container" id="m-container">
+      <!-- To-Do section starts here -->
+      <div class="my-container-td">
+        <h4>To Do</h4>
+
+        <!-- To Do Cards -->
+        <div class="task-list-container">
+          <ul class="list-group" id="task-list-td"></ul>
+        </div>
+      </div>
+      <!-- To-Do section ends here -->
+
+      <!-- Inprogress section starts here -->
+      <div class="my-container-ip">
+        <h4>In Progress</h4>
+
+        <!-- In Progress Cards -->
+        <div class="task-list-container">
+          <ul class="list-group" id="task-list-ip"></ul>
+        </div>
+      </div>
+      <!-- Inprogress section ends here -->
+
+      <!-- Review section starts here -->
+      <div class="my-container-rv">
+        <h4>Review</h4>
+        <!-- Review Cards -->
+        <div class="task-list-container">
+          <ul class="list-group" id="task-list-rv"></ul>
+        </div>
+      </div>
+      <!-- Review section ends here -->
+      <!-- Done section starts here -->
+      <div class="my-container-dn">
+        <h4>Done</h4>
+        <!-- Done Cards -->
+        <div class="task-list-container">
+          <ul class="list-group" id="task-list-dn"></ul>
+        </div>
+      </div>
+      <!-- Done section ends here -->
+    </section>
+    <!-- Body content to display the cards ends here -->
+
+    <!-- Modal Input Form for capturing Task Details starts here-->
     <div class="form-popup" id="Form-modal">
       <form class="form-container" id="form-task">
         <h2 class="form-header-h2" id="form-header">Task Details</h2>
         <div>
-          <label for="taskname" class="form-label">Task Name </label>
+          <label for="taskname" class="form-label"
+            >Task Name<span id="tname-err" class="err-text"></span>
+          </label>
           <input type="text" class="form-control" id="taskname" required />
         </div>
         <div>
-          <label for="duedate" class="form-label">Due Date</label>
+          <label for="duedate" class="form-label"
+            >Due Date<span id="ddate-err" class="err-text"></span
+          ></label>
           <input
             type="date"
             class="form-control"
@@ -73,13 +116,15 @@
           />
         </div>
         <div>
-          <label for="assignedto" class="form-label">Assigned To</label>
+          <label for="assignedto" class="form-label"
+            >Assigned To<span id="assignto-err" class="err-text"></span
+          ></label>
           <input type="text" class="form-control" id="assignedto" required />
         </div>
         <div>
           <label for="taskdescription" class="form-label"
-            >Task Description</label
-          >
+            >Description<span id="desc-err" class="err-text"></span
+          ></label>
           <textarea
             class="form-control"
             id="taskdescription"
@@ -98,16 +143,8 @@
           <input type="hidden" id="add-edit" name="add-edit-name" />
           <input type="hidden" id="edit-parent-id" name="edit-parent-name" />
         </div>
+        <!-- form footer for (start, cancel & reset buttons) starts here -->
         <div class="form-footer">
-          <button id="form-cancel-btn" type="button" class="form-btn">
-            <img
-              class="save-icon-img"
-              src="./images/error.jfif"
-              alt="Cancel
-          Image"
-              title="Cancel"
-            />
-          </button>
           <button type="button" id="form-save-btn" class="form-btn">
             <!-- Save changes -->
             <img
@@ -118,45 +155,40 @@
               title="Save"
             />
           </button>
-        </div>
-      </form>
-    </div>
-
-    <div class="alert-popup" id="alert-modal">
-      <form class="alert-container" id="alert-task">
-        <div class="alert-header-plus-img">
-          <img id="alert-icon" class="alert-icon-img" src="" alt="" />
-          <h2 class="alert-header-h2" id="alert-header">Message</h2>
-        </div>
-        <div>
-          <label for="alert-message" class="alert-label" id="alert-label-id"
-            >Alert</label
-          >
-          <input type="hidden" id="confirm-id" name="confirm-name" />
-        </div>
-        <div class="alert-footer">
-          <button type="button" id="alert-ok-btn" class="alert-btn">OK</button>
-          <button type="button" id="alert-cancel-btn" class="alert-btn">
-            Cancel
+          <button id="form-cancel-btn" type="button" class="form-btn">
+            <img
+              class="save-icon-img"
+              src="./images/error.jfif"
+              alt="Cancel
+          Image"
+              title="Cancel"
+            />
+          </button>
+          <button id="form-reset-btn" type="button" class="form-btn">
+            <img
+              class="save-icon-img"
+              src="./images/reset.svg"
+              alt="Reset Image"
+              title="Reset"
+            />
           </button>
         </div>
+        <!-- form footer for (start, cancel & reset buttons) starts here -->
       </form>
     </div>
+    <!-- Modal Input Form for capturing Task Details ends here-->
 
-    <!-- Footer Starts here -->
+    <!-- Main Footer Starts here -->
     <footer class="footer-text">
       <h6>
         Copyright A&S solutions 2021....Contact Armstrong /Senthil for any
         queries....
       </h6>
     </footer>
-    <!-- Footer Ends here -->
+    <!-- Main Footer Ends here -->
 
+    <!-- liniking the script module to the document  -->
     <script type="module" src="./scripts/main.js" async></script>
-    <!-- <script
-      type="text/javascript"
-      src="./scripts/taskmanagerclass.js"
-      async
-    ></script> -->
+    <!-- ------------------------------- -->
   </body>
 </html>
