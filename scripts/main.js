@@ -74,7 +74,7 @@ function deleditStatus(event) {
 function myAddOpenForm() {
   myOpenForm("Add");
 }
-// function to validate all input values from the task form
+// function to validate all input values from the task form  //  add form action - 2
 function myValidateForm() {
   const TaskName = document.querySelector("#taskname");
   const TaskNameErr = document.querySelector("#tname-err");
@@ -127,7 +127,7 @@ function myValidateForm() {
     myAddTask();
   }
 }
-
+// add form action - 1
 function myOpenForm(p1) {
   document.getElementById("m-container").style.display = "none";
   document.getElementById("Form-modal").style.display = "block";
@@ -139,6 +139,7 @@ function myCloseForm() {
   document.getElementById("m-container").style.display = "flex";
 }
 // clears the values for form elements when this function is called
+
 function myClearForm(p1) {
   document
     .querySelector("#duedate")
@@ -169,11 +170,11 @@ function myClearForm(p1) {
     document.querySelector("#form-header").innerHTML = "Edit Task Details";
   }
 }
-// function to add or update the card values
+// function to add or update the card values  // add form  action - 3
 function myAddTask() {
   const addEdit = document.querySelector("#add-edit").value;
   if (addEdit === "A") {
-    myTaskCardList.addElement();
+    myTaskCardList.addElement(); //  add form action - 4
     myClearForm("Add");
   } else {
     myTaskCardList.updateElement();
