@@ -168,7 +168,7 @@ class TaskManager_Class {
 
       // to get the dynamic HTML text for each card with filled values and stores in "htmnl" variable
       html = this.getHTML(object_item, statusImgName, classChecked);
-      console.log(html);
+
       // Push the html text into to the coresponding tasksHtmlList array
       if (object_item.TaskStatusV === "To Do") {
         tasksHtmlList_td.push(html);
@@ -198,9 +198,8 @@ class TaskManager_Class {
   // creating a html skleton for the card with filled dynamic values
   getHTML(obj, statusImgName, classChecked) {
     let htmlText = "";
-    htmlText = `<div data-id="${
-      obj.id
-    }" class="flex-card" style="display: block">
+    htmlText = `<div data-id="${obj.id}" id="${obj.id}" 
+    class="flex-card" style="display: block" draggable="true">
     <img
       data-id="${obj.id}"
       class="card-icon-img-del"
