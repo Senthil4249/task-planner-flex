@@ -122,16 +122,27 @@ class TaskManager_Class {
   // function to display the cards from array to html
   render() {
     const cardMainArea = document.querySelector("#m-container");
+    //getting the id's for respective task status boxes
+    const tasksList_td = document.querySelector("#task-list-td");
+    const tasksList_ip = document.querySelector("#task-list-ip");
+    const tasksList_rv = document.querySelector("#task-list-rv");
+    const tasksList_dn = document.querySelector("#task-list-dn");
+    // Assigning Empty values for the above container
+    tasksList_td.innerHTML = "";
+    tasksList_ip.innerHTML = "";
+    tasksList_rv.innerHTML = "";
+    tasksList_dn.innerHTML = "";
+
     //creating 4 arrays for each status section
     let tasksHtmlList_td = [];
     let tasksHtmlList_ip = [];
     let tasksHtmlList_rv = [];
     let tasksHtmlList_dn = [];
+
     // loops through all the objects inside array to display into thier corresponing html section
     TaskCardObjectList.forEach((object_item) => {
       let html = "";
       let classChecked = "";
-      let cardVisibility = "";
       let statusImgName = "";
 
       //switch statment to find the stauts and assign their respective images
@@ -178,12 +189,6 @@ class TaskManager_Class {
       const tasksHtml_rv = tasksHtmlList_rv.join("\n");
       const tasksHtml_dn = tasksHtmlList_dn.join("\n");
 
-      //getting the id's for respective task status boxes
-      const tasksList_td = document.querySelector("#task-list-td");
-      const tasksList_ip = document.querySelector("#task-list-ip");
-      const tasksList_rv = document.querySelector("#task-list-rv");
-      const tasksList_dn = document.querySelector("#task-list-dn");
-
       // Set the inner html of the tasksList on the page
       tasksList_td.innerHTML = tasksHtml_td;
       tasksList_ip.innerHTML = tasksHtml_ip;
@@ -194,9 +199,8 @@ class TaskManager_Class {
   // creating a html skleton for the card with filled dynamic values
   getHTML(obj, statusImgName, classChecked) {
     let htmlText = "";
-    htmlText = `<div data-id="${
-      obj.id
-    }" class="flex-card" style="display: block">
+    htmlText = `<div data-id="${obj.id}" id="${obj.id}" 
+    class="flex-card" style="display: block" draggable="true">
     <img
       data-id="${obj.id}"
       class="card-icon-img-del"

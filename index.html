@@ -23,7 +23,7 @@
       <!-- placed in seperate section for mobile view and right allignment -->
       <section class="search-section">
         <label for="search">Search</label>
-        <input id="search" type="text" />
+        <input id="search" type="text" size="30" />
       </section>
     </header>
     <!-- Header menu bear ends here -->
@@ -40,7 +40,21 @@
             alt="Add Icon"
             title="Add Task"
           />
-          <h2>Task</h2>
+          <h3>Add Task</h3>
+        </div>
+        <div class="tools-icon-div">
+          <img
+            class="tools-icon-img"
+            alt="Tools Icon"
+            id="tools-icon-img-id"
+            title="Tools"
+            src="./images/tools.svg"
+          />
+          <div class="dropdown-tools-content" id="myToolsDropdown">
+            <a id="calculatorLinkId">Calculator</a>
+            <a id="convertor-link-id" href="#">Convertor</a>
+            <a href="#">New Tool</a>
+          </div>
         </div>
       </section>
     </section>
@@ -177,6 +191,89 @@
       </form>
     </div>
     <!-- Modal Input Form for capturing Task Details ends here-->
+    <!-- Temperature conversion form starts here -->
+    <form id="Temperature-conversion" class="temperatureConversion">
+      <button class="close-form-btn">X</button>
+      <h4 class="form-conversion-header-h3" id="form-conversion-header-h4">
+        Temperature Conversion
+      </h4>
+      <p>
+        <label>Fahrenheit</label>
+        <br />
+        <input
+          id="inputFahrenheit"
+          type="number"
+          placeholder="Fahrenheit"
+          size="5"
+        />
+      </p>
+      <p>
+        <label>Celcius</label>
+        <br />
+        <input id="inputCelcius" type="number" placeholder="Celcius" size="5" />
+      </p>
+      <p>
+        <label>Kelvin</label>
+        <br />
+        <input id="inputKelvin" type="number" placeholder="Kelvin" size="5" />
+      </p>
+    </form>
+    <!-- Temperature conversion form ends here -->
+
+    <!-- Calculator starts here -->
+
+    <form id="calculatorForm" class="calculator">
+      <div id="calcTitleDisp">
+        <button id = "calcCloseFormBtn" class="close-form-btn">X</button>
+
+        <h5 class="form-calculator-header-h5" id="form-calculator-header">
+          Calculator
+  
+        </h5>        
+      </div>
+      <div id="calcClearBtn">
+      <button id ="calculatorClearBtn" class="calculatorBtn" value='C'>C</button>
+    </div>
+      <p>           
+        <input
+          id="calcDisplayResult"
+          size="15"
+          disabled=true
+        />
+        <div>
+          <button class="calculatorBtn" value="1">1</button>
+          <button class="calculatorBtn" value="2">2</button>
+          <button class="calculatorBtn" value="3">3</button>
+          <button class="calculatorBtn" value="+">+</button>
+        </div>
+        <div>
+          <button class="calculatorBtn" value="4">4</button>
+          <button class="calculatorBtn" value="5">5</button>
+          <button class="calculatorBtn" value="6">6</button>
+          <button class="calculatorBtn" value="-">-</button>
+        </div>
+        <div>
+          <button class="calculatorBtn" value="7">7</button>
+          <button class="calculatorBtn" value="8">8</button>
+          <button class="calculatorBtn" value="9">9</button>
+          <button class="calculatorBtn" value="*">*</button>
+        </div>
+        <div>
+          <button class="calculatorBtn" value="/">/</button>
+          <button class="calculatorBtn" value="0">0</button>
+          <button class="calculatorBtn" value=".">.</button>
+          <button class="calculatorBtn" value="=">=</button>
+        </div>
+        <!-- <div>
+          <button>1</button>
+          <button>1</button>
+          <button>1</button>
+          <button>1</button>
+        </div> -->
+      </p>
+    </form>
+
+    <!-- Calculator ends here -->
 
     <!-- Main Footer Starts here -->
     <footer class="footer-text">

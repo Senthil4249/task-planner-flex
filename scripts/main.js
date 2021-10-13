@@ -3,6 +3,9 @@
 // importing the reusable objeccts from TaskManagerclass.js file
 import { TaskCardObjectList, TaskManager_Class } from "./taskmanagerclass.js";
 
+// importing the reusable objeccts from Tools.js file
+import { temperatureConverter, calculatorDisplay } from "./tools.js";
+
 // declaring variables here for cantainer and class object
 
 const cardSection = document.querySelectorAll("#m-container");
@@ -12,6 +15,109 @@ let myTaskCardList = new TaskManager_Class(cardSection, 0);
 //event for document loading and unloading
 document.body.onunload = myUnLoadFunction;
 document.body.onload = myLoadFunction;
+
+// drag and drop code section starts here
+/* draggable element */
+
+function dragStart(e) {
+  if (e.target.classList.contains("flex-card")) {
+    e.dataTransfer.setData("drag-id", e.target.id);
+    setTimeout(() => {
+      e.target.style.display = "none";
+    }, 30);
+  }
+}
+
+function dragEnter(e) {
+  e.preventDefault();
+  e.target.classList.add("drag-over");
+}
+
+function dragOver(e) {
+  e.preventDefault();
+  e.target.classList.add("drag-over");
+}
+
+function dragLeave(e) {
+  e.target.classList.remove("drag-over");
+}
+
+function drop(e) {
+  e.target.classList.remove("drag-over");
+
+  // get the draggable element
+  const id = e.dataTransfer.getData("drag-id");
+  const selectedCardIndex = TaskCardObjectList.findIndex(
+    (card) => card.id == id
+  );
+  // change the status and call render function
+  if (e.target.getAttribute("class") === "my-container-td") {
+    TaskCardObjectList[selectedCardIndex].TaskStatusV = "To Do";
+    TaskCardObjectList[selectedCardIndex].TaskIsDoneV = false;
+    myTaskCardList.render();
+  } else if (e.target.getAttribute("class") === "my-container-ip") {
+    TaskCardObjectList[selectedCardIndex].TaskStatusV = "In-Progress";
+    TaskCardObjectList[selectedCardIndex].TaskIsDoneV = false;
+    myTaskCardList.render();
+  } else if (e.target.getAttribute("class") === "my-container-rv") {
+    TaskCardObjectList[selectedCardIndex].TaskStatusV = "Review";
+    TaskCardObjectList[selectedCardIndex].TaskIsDoneV = false;
+    myTaskCardList.render();
+  } else if (e.target.getAttribute("class") === "my-container-dn") {
+    TaskCardObjectList[selectedCardIndex].TaskStatusV = "Done";
+    TaskCardObjectList[selectedCardIndex].TaskIsDoneV = true;
+    myTaskCardList.render();
+  }
+}
+
+// drag and drop section code ends here
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myToolFunction() {
+  document.getElementById("myToolsDropdown").classList.toggle("show");
+}
+
+function myConvertorOpenForm() {
+  document.querySelector("#Temperature-conversion").style.display = "block";
+  let inputFahrenheit = document.querySelector("#inputFahrenheit");
+  let inputCelcius = document.querySelector("#inputCelcius");
+  let inputKelvin = document.querySelector("#inputKelvin");
+  inputCelcius.value = "";
+  inputFahrenheit.value = "";
+  inputKelvin.value = "";
+}
+
+// calculator function open form
+function myCalculatorOpenForm() {
+  document.querySelector("#calculatorForm").style.display = "block";
+  document.querySelector("#calcDisplayResult").value = "0";
+}
+
+function myConvertorCloseForm() {
+  document.querySelector("#Temperature-conversion").style.display = "none";
+}
+// my calculator close form
+
+function myCalculatorCloseForm() {
+  document.querySelector("#calculatorForm").style.display = "none";
+}
+// convertor form close button
+let convertorFormCloseBtn = document.querySelector(".close-form-btn");
+convertorFormCloseBtn.addEventListener("click", myConvertorCloseForm);
+//-------------------
+let calcCloseFormBtn = document.querySelector("#calcCloseFormBtn");
+calcCloseFormBtn.addEventListener("click", myCalculatorCloseForm);
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function (e) {
+  if (!e.target.matches(".tools-icon-img")) {
+    let myToolsDropdown = document.getElementById("myToolsDropdown");
+    if (myToolsDropdown.classList.contains("show")) {
+      myToolsDropdown.classList.remove("show");
+    }
+  }
+};
 
 // Function to get a formatted date based for the parameter being passed
 function getFormattedDate(p1) {
@@ -43,14 +149,63 @@ function myAddEvents() {
   let formCancelBtn = document.querySelector("#form-cancel-btn");
   let formSaveBtn = document.querySelector("#form-save-btn");
   let formRejectBtn = document.querySelector("#form-reset-btn");
+  let toolsiconimgid = document.querySelector("#tools-icon-img-id");
+  let Convertorlinkid = document.querySelector("#convertor-link-id");
+  let calculatorLinkId = document.querySelector("#calculatorLinkId");
+  let inputFahrenheit = document.querySelector("#inputFahrenheit");
+  let inputCelcius = document.querySelector("#inputCelcius");
+  let inputKelvin = document.querySelector("#inputKelvin");
+
   plusIcon.addEventListener("click", myAddOpenForm);
   formCancelBtn.addEventListener("click", myCloseForm);
   formSaveBtn.addEventListener("click", myValidateForm);
   formRejectBtn.addEventListener("click", myClearForm);
+  toolsiconimgid.addEventListener("click", myToolFunction);
+  Convertorlinkid.addEventListener("click", myConvertorOpenForm);
+  calculatorLinkId.addEventListener("click", myCalculatorOpenForm);
+  inputKelvin.addEventListener("change", temperatureConverter);
+  inputKelvin.addEventListener("input", temperatureConverter);
+  inputCelcius.addEventListener("change", temperatureConverter);
+  inputCelcius.addEventListener("input", temperatureConverter);
+  inputFahrenheit.addEventListener("change", temperatureConverter);
+  inputFahrenheit.addEventListener("input", temperatureConverter);
   //creating a click event for all the elements within the card overall main conatiner
   cardSection.forEach((btn) => {
     btn.addEventListener("click", deleditStatus);
   });
+  const itemList = document.querySelectorAll(".list-group");
+  itemList.forEach((item) => {
+    item.addEventListener("dragstart", dragStart);
+  });
+  // calculator button event list
+  const calcBtnList = document.querySelectorAll(".calculatorBtn");
+  calcBtnList.forEach((item) => {
+    item.addEventListener("click", calculatorDisplay);
+  });
+  //---------------------------------
+
+  /* drop targets */
+  const tdBox = document.querySelector(".my-container-td");
+  const ipBox = document.querySelector(".my-container-ip");
+  const rvBox = document.querySelector(".my-container-rv");
+  const dnBox = document.querySelector(".my-container-dn");
+
+  tdBox.addEventListener("dragenter", dragEnter);
+  tdBox.addEventListener("dragover", dragOver);
+  tdBox.addEventListener("dragleave", dragLeave);
+  tdBox.addEventListener("drop", drop);
+  ipBox.addEventListener("dragenter", dragEnter);
+  ipBox.addEventListener("dragover", dragOver);
+  ipBox.addEventListener("dragleave", dragLeave);
+  ipBox.addEventListener("drop", drop);
+  rvBox.addEventListener("dragenter", dragEnter);
+  rvBox.addEventListener("dragover", dragOver);
+  rvBox.addEventListener("dragleave", dragLeave);
+  rvBox.addEventListener("drop", drop);
+  dnBox.addEventListener("dragenter", dragEnter);
+  dnBox.addEventListener("dragover", dragOver);
+  dnBox.addEventListener("dragleave", dragLeave);
+  dnBox.addEventListener("drop", drop);
 }
 //function for capturing which button (delete, edit & status) is clicked within the cards  and  take appropriate action
 function deleditStatus(event) {
@@ -197,5 +352,6 @@ function myLoadFunction() {
   myAddEvents();
   myTaskCardList.render();
 }
+
 // to export shared function to be avilable for other js files
 export { myTaskCardList, myOpenForm, getFormattedDate };
