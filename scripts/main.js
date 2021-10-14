@@ -4,11 +4,20 @@
 import { TaskCardObjectList, TaskManager_Class } from "./taskmanagerclass.js";
 
 // importing the reusable objeccts from Tools.js file
-import { temperatureConverter, calculatorDisplay } from "./tools.js";
-
+import {
+  temperatureConverter,
+  calculatorDisplay,
+  displayWeather,
+} from "./tools.js";
+displayWeather();
 // declaring variables here for cantainer and class object
 
 const cardSection = document.querySelectorAll("#m-container");
+
+// Date and time section
+const todaydateDisplay = document.querySelector("#todaydateDisplay");
+todaydateDisplay.innerHTML = displayFormattedDate("today");
+//-------------
 
 // creating object for TaskManager_Class
 let myTaskCardList = new TaskManager_Class(cardSection, 0);
@@ -143,6 +152,61 @@ function getFormattedDate(p1) {
   }
   return date;
 }
+//--------------------
+// date display format function
+function displayFormattedDate(p1) {
+  let date;
+  //
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  // let day = days[ now.getDay() ];
+  // let month = months[ now.getMonth() ];
+  //
+
+  if (p1 === "today") {
+    date = new Date();
+  }
+  let day = days[date.getDay()];
+  let dd = date.getDate(); // for day
+  let mm = date.getMonth(); //January is 0 so need to add 1 to make it 1!
+  let month = months[mm];
+  let yyyy = date.getFullYear(); // for year
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  if (p1 === "today") {
+    date = day + " " + dd + "," + month + "," + yyyy;
+  }
+
+  return date;
+}
+//---------
+
 //function to add events for all elements in the document
 function myAddEvents() {
   let plusIcon = document.querySelector("#plus-icon");
