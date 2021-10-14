@@ -27,4 +27,71 @@ function temperatureConverter(event) {
   }
 }
 
-export { temperatureConverter };
+// Calculator Form Calculations
+function calculatorDisplay(event) {
+  let calcDisplayResult = document.querySelector("#calcDisplayResult");
+  // switch staatement for all keys pressed
+  console.log("inside function");
+  let fisrtValue,
+    lastValue = "";
+  let calculateResult = 0;
+  fisrtValue = calcDisplayResult.value[0];
+  lastValue = calcDisplayResult.value[calcDisplayResult.value.length - 1];
+  //
+  switch (event.target.value) {
+    case "C":
+      calcDisplayResult.value = "0";
+      console.log("inside C");
+      break;
+    case "0":
+      if (calcDisplayResult.value === "0") {
+        calcDisplayResult.value = event.target.value;
+      } else {
+        calcDisplayResult.value += event.target.value;
+      }
+      break;
+    //
+    case "+":
+    case "-":
+    case "*":
+    case "/":
+      //
+      if (Number(fisrtValue) > 0 && Number(fisrtValue) <= 9) {
+        if (
+          !(
+            lastValue == "+" ||
+            lastValue == "-" ||
+            lastValue == "*" ||
+            lastValue == "/"
+          )
+        ) {
+          calcDisplayResult.value += event.target.value;
+        }
+      }
+      break;
+    //
+    case "=":
+      calculateResult = eval(calcDisplayResult.value).toFixed(2);
+      //
+      console.log(calculateResult - Number(Math.floor(calculateResult)));
+      //
+      if (calculateResult - Number(Math.floor(calculateResult)) === 0.0) {
+        calcDisplayResult.value = Math.floor(calculateResult);
+      } else {
+        calcDisplayResult.value = calculateResult;
+      }
+      break;
+    //
+    default:
+      if (calcDisplayResult.value === "0") {
+        calcDisplayResult.value = event.target.value;
+      } else {
+        calcDisplayResult.value += event.target.value;
+      }
+      break;
+  }
+} // function close brace
+// ----------------------------
+
+//-----------------------------
+export { temperatureConverter, calculatorDisplay };

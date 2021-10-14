@@ -4,7 +4,7 @@
 import { TaskCardObjectList, TaskManager_Class } from "./taskmanagerclass.js";
 
 // importing the reusable objeccts from Tools.js file
-import { temperatureConverter } from "./tools.js";
+import { temperatureConverter, calculatorDisplay } from "./tools.js";
 
 // declaring variables here for cantainer and class object
 
@@ -88,12 +88,27 @@ function myConvertorOpenForm() {
   inputKelvin.value = "";
 }
 
+// calculator function open form
+function myCalculatorOpenForm() {
+  document.querySelector("#calculatorForm").style.display = "block";
+  document.querySelector("#calcDisplayResult").value = "0";
+}
+
 function myConvertorCloseForm() {
   document.querySelector("#Temperature-conversion").style.display = "none";
 }
+// my calculator close form
 
+function myCalculatorCloseForm() {
+  document.querySelector("#calculatorForm").style.display = "none";
+}
+// convertor form close button
 let convertorFormCloseBtn = document.querySelector(".close-form-btn");
 convertorFormCloseBtn.addEventListener("click", myConvertorCloseForm);
+//-------------------
+let calcCloseFormBtn = document.querySelector("#calcCloseFormBtn");
+calcCloseFormBtn.addEventListener("click", myCalculatorCloseForm);
+
 // Close the dropdown if the user clicks outside of it
 window.onclick = function (e) {
   if (!e.target.matches(".tools-icon-img")) {
@@ -136,6 +151,7 @@ function myAddEvents() {
   let formRejectBtn = document.querySelector("#form-reset-btn");
   let toolsiconimgid = document.querySelector("#tools-icon-img-id");
   let Convertorlinkid = document.querySelector("#convertor-link-id");
+  let calculatorLinkId = document.querySelector("#calculatorLinkId");
   let inputFahrenheit = document.querySelector("#inputFahrenheit");
   let inputCelcius = document.querySelector("#inputCelcius");
   let inputKelvin = document.querySelector("#inputKelvin");
@@ -146,6 +162,7 @@ function myAddEvents() {
   formRejectBtn.addEventListener("click", myClearForm);
   toolsiconimgid.addEventListener("click", myToolFunction);
   Convertorlinkid.addEventListener("click", myConvertorOpenForm);
+  calculatorLinkId.addEventListener("click", myCalculatorOpenForm);
   inputKelvin.addEventListener("change", temperatureConverter);
   inputKelvin.addEventListener("input", temperatureConverter);
   inputCelcius.addEventListener("change", temperatureConverter);
@@ -160,6 +177,13 @@ function myAddEvents() {
   itemList.forEach((item) => {
     item.addEventListener("dragstart", dragStart);
   });
+  // calculator button event list
+  const calcBtnList = document.querySelectorAll(".calculatorBtn");
+  calcBtnList.forEach((item) => {
+    item.addEventListener("click", calculatorDisplay);
+  });
+  //---------------------------------
+
   /* drop targets */
   const tdBox = document.querySelector(".my-container-td");
   const ipBox = document.querySelector(".my-container-ip");
@@ -205,7 +229,7 @@ function deleditStatus(event) {
 function myAddOpenForm() {
   myOpenForm("Add");
 }
-// function to validate all input values from the task form
+// function to validate all input values from the task form  //  add form action - 2
 function myValidateForm() {
   const TaskName = document.querySelector("#taskname");
   const TaskNameErr = document.querySelector("#tname-err");
@@ -258,7 +282,7 @@ function myValidateForm() {
     myAddTask();
   }
 }
-
+// add form action - 1
 function myOpenForm(p1) {
   document.getElementById("m-container").style.display = "none";
   document.getElementById("Form-modal").style.display = "block";
@@ -270,6 +294,7 @@ function myCloseForm() {
   document.getElementById("m-container").style.display = "flex";
 }
 // clears the values for form elements when this function is called
+
 function myClearForm(p1) {
   document
     .querySelector("#duedate")
@@ -300,11 +325,11 @@ function myClearForm(p1) {
     document.querySelector("#form-header").innerHTML = "Edit Task Details";
   }
 }
-// function to add or update the card values
+// function to add or update the card values  // add form  action - 3
 function myAddTask() {
   const addEdit = document.querySelector("#add-edit").value;
   if (addEdit === "A") {
-    myTaskCardList.addElement();
+    myTaskCardList.addElement(); //  add form action - 4
     myClearForm("Add");
   } else {
     myTaskCardList.updateElement();

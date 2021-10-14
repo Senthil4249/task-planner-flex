@@ -1,0 +1,14 @@
+if 'C' clear value and display '0'
+
+if '1-9 ' append and display value 
+
+if symbol pressed perform action accordingly
+ no symbol as first character 
+and symbol cannot be twice backto back
+
+if equal "=" pressed call "eval function" and display result
+and equal symbol shouldnot be displayed only result
+
+if not proper expression = should be ingnored
+else 
+calculate result

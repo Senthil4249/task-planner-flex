@@ -29,6 +29,7 @@ class TaskManager_Class {
   }
 
   // Function to add Task object into TaskListarray and call the Render function to display them in HTML
+  // add form action - 4 ends here
   addElement() {
     // Assign the formValues to variables
     const strTaskNameValue = document.querySelector("#taskname").value;
@@ -166,7 +167,7 @@ class TaskManager_Class {
         classChecked = "card-text";
       }
 
-      // to get the dynamic HTML text for each card with filled values and stores in "htmnl" variable
+      // to get the dynamic HTML text for each card with filled values and stores in "html" variable
       html = this.getHTML(object_item, statusImgName, classChecked);
 
       // Push the html text into to the coresponding tasksHtmlList array
@@ -193,8 +194,8 @@ class TaskManager_Class {
       tasksList_ip.innerHTML = tasksHtml_ip;
       tasksList_rv.innerHTML = tasksHtml_rv;
       tasksList_dn.innerHTML = tasksHtml_dn;
-    });
-  }
+    }); // end of foreach from line 130
+  } // end of render from line  122
   // creating a html skleton for the card with filled dynamic values
   getHTML(obj, statusImgName, classChecked) {
     let htmlText = "";
