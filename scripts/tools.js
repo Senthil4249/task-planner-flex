@@ -91,7 +91,31 @@ function calculatorDisplay(event) {
       break;
   }
 } // function close brace
-// ----------------------------
+// weather API function starts----------------------------
 
+function displayWeather() {
+  //
+  let city = "melbourne";
+  let country = "au";
+  let weatherDisplay = "";
+  let weatherDisplayH4 = document.querySelector("#weatherDisplayH4");
+
+  //
+  let myUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=50a7aa80fa492fa92e874d23ad061374`;
+
+  fetch(myUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      let tempValue = data["main"]["temp"];
+      tempValue = (tempValue - 273.15).toFixed(0);
+      let nameValue = data["name"];
+      let descValue = data["weather"][0]["description"];
+      weatherDisplay = `${nameValue}-${descValue} ${tempValue}`;
+      weatherDisplayH4.innerHTML = weatherDisplay;
+    })
+    .catch((err) => {
+      null;
+    });
+}
 //-----------------------------
-export { temperatureConverter, calculatorDisplay };
+export { temperatureConverter, calculatorDisplay, displayWeather };
